@@ -1,0 +1,2 @@
+mkdir "kubexporter"
+cd kubexporter

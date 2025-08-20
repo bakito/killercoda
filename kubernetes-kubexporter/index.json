@@ -1,0 +1,40 @@
+{
+  "title": "kubexporter demo",
+  "description": "Demonstrates the usage of kubexporter",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "intro-background.sh"
+    },
+    "steps": [
+      {
+        "title": "Installation",
+        "text": "installation.md"
+      },
+      {
+        "title": "Run",
+        "text": "run.md",
+        "foreground": "run-foreground.sh"
+      }
+    ],
+    "assets": {
+      "controlplane": [
+        {
+          "file": "**",
+          "target": "/root/.assets/",
+          "chmod": "+x"
+        }
+      ],
+      "host01": [
+        {
+          "file": "**",
+          "target": "/root/.assets/",
+          "chmod": "+x"
+        }
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node-4GB"
+  }
+}
