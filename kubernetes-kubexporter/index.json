@@ -9,7 +9,8 @@
     "steps": [
       {
         "title": "Installation",
-        "text": "installation.md"
+        "text": "installation.md",
+        "foreground": "installation-foreground.sh"
       },
       {
         "title": "Run",
