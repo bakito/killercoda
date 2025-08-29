@@ -9,8 +9,12 @@
     },
     "steps": [
       {
+        "title": "Login To Headlamp",
+        "text": "token.md"
+      },
+      {
         "title": "Run and access",
-        "text": "step1.md"
+        "text": "install-tools.md"
       }
     ],
     "assets": {

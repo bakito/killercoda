@@ -1,13 +1,6 @@
-Generate Access Token
+Install additional tools
 
-```plain
-kubectl create token headlamp -n headlamp
-```{{exec}}
-
-
-Use the generated token to access the [Headlamp Dashboard]({{TRAFFIC_HOST1_30080}})
-
-External Secrets 
+## External Secrets
 
 ```plain
 helm repo add external-secrets-operator https://charts.external-secrets.io/
@@ -15,7 +8,7 @@ helm install external-secrets -n external-secrets --create-namespace  external-s
 ```{{exec}}
 
 
-Cert Manager
+## Cert Manager
 
 ```plain
 helm repo add cert-manager https://charts.jetstack.io
