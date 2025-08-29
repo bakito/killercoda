@@ -1,12 +1,9 @@
 {
   "title": "Kubernetes with Headlamp",
   "description": "Run and access the Kubernetes with Headlamp",
+  "difficulty": "Beginner",
+  "time": "15minutes",
   "details": {
-    "intro": {
-      "text": "intro.md",
-      "foreground": "foreground.sh",
-      "background": "background.sh"
-    },
     "steps": [
       {
         "title": "Login To Headlamp",
@@ -14,25 +11,45 @@
       },
       {
         "title": "Run and access",
-        "text": "install-tools.md"
+        "text": "install-tools.md",
+        "foreground": "clear.sh"
       }
     ],
+    "intro": {
+      "text": "intro.md",
+      "foreground": "foreground.sh",
+      "background": "background.sh"
+    },
     "assets": {
-      "controlplane": [
-        {
-          "file": "**",
-          "target": "/root/.assets/",
-          "chmod": "+x"
-        }
-      ],
       "host01": [
         {
           "file": "**",
           "target": "/root/.assets/",
           "chmod": "+x"
+        },
+        {
+          "file": "bin/wait.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        },
+        {
+          "file": "bin/setup.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
         }
       ]
     }
+  },
+  "environment": {
+    "uilayout": "terminal",
+    "showdashboard": true,
+    "dashboards": [
+      {
+        "name": "Headlamp",
+        "href": "https://[[HOST_SUBDOMAIN]]-30080-[[KATACODA_HOST]].environments.katacoda.com",
+        "port": 30080
+      }
+    ]
   },
   "backend": {
     "imageid": "kubernetes-kubeadm-1node-4GB"

@@ -1,3 +1,5 @@
+Wait for Headlamp to be ready
+
 Generate Access Token
 
 ```plain

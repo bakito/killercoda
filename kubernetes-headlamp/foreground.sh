@@ -1,6 +1,3 @@
-echo "Installing scenario..."
-while [ ! -f /tmp/finished ]; do sleep 1; done
-echo DONE
-alias k=kubectl
+#!/bin/env bash
 
-
+while [ ! -f /usr/local/bin/wait.sh ]; do sleep 1; done; /usr/local/bin/wait.sh

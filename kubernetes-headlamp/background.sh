@@ -1,10 +1,5 @@
 #!/bin/bash
-set +ex
-echo starting...
 
-cd /root/.assets/
+sleep 5
 
-helm repo add headlamp https://kubernetes-sigs.github.io/headlamp/
-helm install headlamp headlamp/headlamp -n headlamp --create-namespace -f headlamp/values.yaml --wait
-
-touch /tmp/finished
+/usr/local/bin/setup.sh
