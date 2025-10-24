@@ -1,6 +1,6 @@
 {
-  "title": "kubexporter demo",
-  "description": "Demonstrates the usage of kubexporter",
+  "title": "KubExporter Demo",
+  "description": "Demonstrates the usage of KubExporter",
   "details": {
     "intro": {
       "text": "intro.md",
