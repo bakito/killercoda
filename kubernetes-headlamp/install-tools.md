@@ -11,6 +11,6 @@ helm install external-secrets -n external-secrets --create-namespace external-se
 ## Cert Manager
 
 ```plain
-helm repo add cert-manager -n cert-manager https://charts.jetstack.io
-helm install cert-manager cert-manager/cert-manager --set crds.enabled=true --wait
+helm repo add cert-manager https://charts.jetstack.io
+helm install cert-manager cert-manager/cert-manager -n cert-manager --set crds.enabled=true --wait
 ```{{exec}}
