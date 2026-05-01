@@ -1,0 +1,52 @@
+{
+  "title": "Crossplane - Crossview",
+  "description": "Installs crossplane with crossview",
+  "difficulty": "Beginner",
+  "time": "15minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Login To Crossview",
+        "text": "crossview.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "foreground": "foreground.sh",
+      "background": "background.sh"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "**",
+          "target": "/root/.assets/",
+          "chmod": "+x"
+        },
+        {
+          "file": "bin/wait.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        },
+        {
+          "file": "bin/setup.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "uilayout": "terminal",
+    "showdashboard": true,
+    "dashboards": [
+      {
+        "name": "Crossview",
+        "href": "https://[[HOST_SUBDOMAIN]]-30080-[[KATACODA_HOST]].environments.katacoda.com",
+        "port": 30080
+      }
+    ]
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node-4GB"
+  }
+}
