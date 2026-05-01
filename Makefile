@@ -1,6 +1,12 @@
+SCENARIO_DIRS := $(patsubst %/index.json,%,$(wildcard */index.json))
+
 .PHONY: scripts
 scripts:
-	cp scripts/foreground.sh kubernetes-headlamp/foreground.sh
-	cp scripts/clear.sh  kubernetes-headlamp/clear.sh
-	cp scripts/background.sh  kubernetes-headlamp/background.sh
-	cp scripts/wait.sh kubernetes-headlamp/assets/bin/wait.sh
+	@for dir in $(SCENARIO_DIRS); do \
+		echo "Copying scripts to $$dir"; \
+		mkdir -p "$$dir/assets/bin"; \
+		cp scripts/background.sh "$$dir/background.sh"; \
+		cp scripts/clear.sh "$$dir/clear.sh"; \
+		cp scripts/foreground.sh "$$dir/foreground.sh"; \
+		cp scripts/kutils.sh "$$dir/assets/bin/kutils.sh"; \
+	done

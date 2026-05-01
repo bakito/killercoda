@@ -4,13 +4,13 @@
   "details": {
     "intro": {
       "text": "intro.md",
-      "background": "intro-background.sh"
+      "foreground": "foreground.sh",
+      "background": "background.sh"
     },
     "steps": [
       {
         "title": "Installation",
-        "text": "installation.md",
-        "foreground": "installation-foreground.sh"
+        "text": "installation.md"
       },
       {
         "title": "Run",

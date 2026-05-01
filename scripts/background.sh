@@ -1,5 +1,3 @@
 #!/bin/bash
-
-sleep 5
-
-/usr/local/bin/setup.sh
+while [ ! -f /root/.assets/bin/background.sh ]; do sleep 1; done
+/root/.assets/bin/background.sh

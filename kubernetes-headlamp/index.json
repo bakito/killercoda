@@ -28,13 +28,18 @@
           "chmod": "+x"
         },
         {
-          "file": "bin/wait.sh",
-          "target": "/usr/local/bin/",
+          "file": "bin/background.sh",
+          "target": "/root/.assets/bin/",
           "chmod": "+x"
         },
         {
-          "file": "bin/setup.sh",
-          "target": "/usr/local/bin/",
+          "file": "bin/foreground.sh",
+          "target": "/root/.assets/bin/",
+          "chmod": "+x"
+        },
+        {
+          "file": "bin/kutils.sh",
+          "target": "/root/.assets/bin/",
           "chmod": "+x"
         }
       ]
