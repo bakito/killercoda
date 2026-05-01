@@ -1,13 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# Copy kutils to /usr/local/bin if it exists in the assets
-if [ -f /root/.assets/bin/kutils.sh ]; then
-  cp /root/.assets/bin/kutils.sh /usr/local/bin/kutils.sh
-  chmod +x /usr/local/bin/kutils.sh
-fi
-
-source /usr/local/bin/kutils.sh
+source /root/.assets/bin/kutils.sh
 
 # Initialize tasks
 koda_task_init "helm-repo" "Add headlamp helm repo"

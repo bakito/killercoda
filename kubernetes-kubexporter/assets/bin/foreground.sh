@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# Wait for kutils to be available
-while [ ! -f /usr/local/bin/kutils.sh ]; do sleep 1; done
-source /usr/local/bin/kutils.sh
+source /root/.assets/bin/kutils.sh
 
 # Define the same tasks as in setup.sh
 koda_task_add "apt-tree" "Installing tree utility"

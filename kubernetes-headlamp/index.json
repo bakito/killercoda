@@ -26,21 +26,6 @@
           "file": "**",
           "target": "/root/.assets/",
           "chmod": "+x"
-        },
-        {
-          "file": "bin/background.sh",
-          "target": "/root/.assets/bin/",
-          "chmod": "+x"
-        },
-        {
-          "file": "bin/foreground.sh",
-          "target": "/root/.assets/bin/",
-          "chmod": "+x"
-        },
-        {
-          "file": "bin/kutils.sh",
-          "target": "/root/.assets/bin/",
-          "chmod": "+x"
         }
       ]
     }
