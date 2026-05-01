@@ -1,8 +1,0 @@
-service:
-  type: NodePort
-  nodePort: 30080
-secrets:
-  dbPassword: db-password
-  sessionSecret: session-secret
-  adminUsername: admin
-  adminPassword: login
