@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Colors
 RED=$(printf '\033[0;31m')
@@ -82,8 +82,8 @@ koda_render_ui() {
     local spinner_idx=0
     local spinner_chars="|/-\\"
 
-    # Hide cursor
-    [ -t 1 ] && tput civis
+    # Hide cursor (safe with set -e)
+    [ -t 1 ] && tput civis || true
 
     while true; do
         # Move cursor to top-left
@@ -137,7 +137,7 @@ koda_render_ui() {
         sleep 0.5
     done
 
-    # Show cursor
-    [ -t 1 ] && tput cnorm
+    # Show cursor (safe with set -e)
+    [ -t 1 ] && tput cnorm || true
     echo ""
 }

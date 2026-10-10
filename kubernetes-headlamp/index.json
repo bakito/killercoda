@@ -36,7 +36,6 @@
     "dashboards": [
       {
         "name": "Headlamp",
-        "href": "https://[[HOST_SUBDOMAIN]]-30080-[[KATACODA_HOST]].environments.katacoda.com",
         "port": 30080
       }
     ]
