@@ -23,7 +23,7 @@ kubexporter --worker 5 \
 Find exported files in folder kubexporter
 
 ```plain
-tree ~/kubexporter
+tree ~/kubexporter/exports
 ```{{exec}}
 
 
