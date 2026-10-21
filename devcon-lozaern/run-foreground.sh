@@ -2,3 +2,4 @@
 
 cd devcon-lozaern/killerkoda
 clear
+devbox shell
