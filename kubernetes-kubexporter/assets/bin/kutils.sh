@@ -39,11 +39,20 @@ koda_task_init() {
 koda_task_start() {
     local id=$1
     echo "running" > "$KODA_DIR/$id"
+    date +%s > "$KODA_DIR/$id.start"
 }
 
 koda_task_done() {
     local id=$1
     echo "done" > "$KODA_DIR/$id"
+    if [ -f "$KODA_DIR/$id.start" ]; then
+      local start_time
+      start_time=$(cat "$KODA_DIR/$id.start")
+      local end_time
+      end_time=$(date +%s)
+      local elapsed=$((end_time - start_time))
+      echo "$elapsed" > "$KODA_DIR/$id.duration"
+    fi
 }
 
 koda_task_fail() {
@@ -113,10 +122,34 @@ koda_render_ui() {
                     all_done=false
                     ;;
                 done)
-                    printf "%s %s\n" "$ICON_DONE" "$label"
+                    local duration_str=""
+                    if [ -f "$KODA_DIR/$id.duration" ]; then
+                        local dur
+                        dur=$(cat "$KODA_DIR/$id.duration")
+                        if [ "$dur" -ge 60 ]; then
+                            local mins=$((dur / 60))
+                            local secs=$((dur % 60))
+                            duration_str=" (${mins}m ${secs}s)"
+                        else
+                            duration_str=" (${dur}s)"
+                        fi
+                    fi
+                    printf "%s %s%s\n" "$ICON_DONE" "$label" "$duration_str"
                     ;;
                 skipped)
-                    printf "%s %s (already installed)\n" "$ICON_DONE" "$label"
+                    local duration_str=""
+                    if [ -f "$KODA_DIR/$id.duration" ]; then
+                        local dur
+                        dur=$(cat "$KODA_DIR/$id.duration")
+                        if [ "$dur" -ge 60 ]; then
+                            local mins=$((dur / 60))
+                            local secs=$((dur % 60))
+                            duration_str=" (${mins}m ${secs}s)"
+                        else
+                            duration_str=" (${dur}s)"
+                        fi
+                    fi
+                    printf "%s %s (already installed)%s\n" "$ICON_DONE" "$label" "$duration_str"
                     ;;
                 failed)
                     printf "%s ${RED}%s (failed)${NC}\n" "$ICON_FAILED" "$label"

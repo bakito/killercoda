@@ -1,0 +1,37 @@
+{
+  "title": "Devcon Lozärn",
+  "description": "KubExporter - (kubernetes) Backup better. Together.",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "foreground": "foreground.sh",
+      "background": "background.sh"
+    },
+    "steps": [
+      {
+        "title": "Start Presentation",
+        "text": "run.md",
+        "foreground": "run-foreground.sh"
+      }
+    ],
+    "assets": {
+      "controlplane": [
+        {
+          "file": "**",
+          "target": "/root/.assets/",
+          "chmod": "+x"
+        }
+      ],
+      "host01": [
+        {
+          "file": "**",
+          "target": "/root/.assets/",
+          "chmod": "+x"
+        }
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node-4GB"
+  }
+}

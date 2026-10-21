@@ -2,7 +2,7 @@
 
 source /root/.assets/bin/kutils.sh
 
-# Define the same tasks as in setup.sh
+# Define the same tasks as in background.sh
 koda_task_add "helm-repo" "Add headlamp helm repo"
 koda_task_add "headlamp-install" "Installing Headlamp"
 
