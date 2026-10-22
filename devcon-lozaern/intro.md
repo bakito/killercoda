@@ -1,1 +1,3 @@
 Preparing the environment...
+
+... Please wait a few seconds until you see the setup to be complete!

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-cd devcon-lozaern/killerkoda
+cd devcon-lozaern/killercoda
 clear
 devbox shell
