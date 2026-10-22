@@ -8,5 +8,5 @@ Let's start the presentation
 devbox run present
 ```{{exec}}
 
-After the execution in the slides, teh exported files can be found in `/tmp/kubexporter-demo/`. 
+After the execution in the slides, the exported files can be found in `/tmp/kubexporter-demo/`. 
 You can browse them in the Editor Tab. 
