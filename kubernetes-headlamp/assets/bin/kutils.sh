@@ -59,10 +59,56 @@ koda_task_fail() {
     local id=$1
     local required=${2:-false}
     echo "failed" > "$KODA_DIR/$id"
+    # Store any error message passed via stderr capture or environment
+    if [ -n "${KODA_ERROR_MSG:-}" ]; then
+        echo "$KODA_ERROR_MSG" > "$KODA_DIR/$id.error"
+    fi
     if [ "$required" = "true" ]; then
         printf "${RED}Critical task %s failed. Exiting.${NC}\n" "$id"
         exit 1
     fi
+}
+
+# Store an error message for a task (used by debug helpers)
+koda_task_error() {
+    local id=$1
+    local msg=$2
+    echo "$msg" > "$KODA_DIR/$id.error"
+}
+
+# Debug helper: print kubectl diagnostics for a failed Helm deployment
+# Tries both Helm labels (app.kubernetes.io/instance) and plain app= labels
+koda_debug_deployment() {
+    local name=$1
+    local namespace=$2
+    echo "========================================" >&2
+    echo "DEBUG: Deployment $name (namespace: $namespace)" >&2
+    echo "========================================" >&2
+    echo "--- All pods in namespace ---" >&2
+    kubectl get pods -n "$namespace" -o wide 2>&1 || true
+    echo "--- Pod describe ---" >&2
+    local pod=""
+    # Try Helm label first
+    pod=$(kubectl get pods -n "$namespace" -l "app.kubernetes.io/instance=$name" -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || true)
+    # Fallback to app= label
+    if [ -z "$pod" ]; then
+        pod=$(kubectl get pods -n "$namespace" -l "app=$name" -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || true)
+    fi
+    # Fallback to name prefix match
+    if [ -z "$pod" ]; then
+        pod=$(kubectl get pods -n "$namespace" -o jsonpath="{.items[?(@.metadata.name=='${name}.*')].metadata.name}" 2>/dev/null | head -1 || true)
+    fi
+    if [ -n "$pod" ]; then
+        echo "Found pod: $pod" >&2
+        kubectl describe pod "$pod" -n "$namespace" 2>&1 || true
+        echo "--- Pod logs ---" >&2
+        kubectl logs "$pod" -n "$namespace" --tail=50 2>&1 || true
+    else
+        echo "No pods found for $name in namespace $namespace" >&2
+    fi
+    echo "--- Events ---" >&2
+    kubectl get events -n "$namespace" --sort-by='.lastTimestamp' 2>&1 | tail -20 || true
+    echo "========================================" >&2
 }
 
 koda_task_skip() {
@@ -152,7 +198,15 @@ koda_render_ui() {
                     printf "%s %s (already installed)%s\n" "$ICON_DONE" "$label" "$duration_str"
                     ;;
                 failed)
-                    printf "%s ${RED}%s (failed)${NC}\n" "$ICON_FAILED" "$label"
+                    local error_msg=""
+                    if [ -f "$KODA_DIR/$id.error" ]; then
+                        error_msg=$(head -1 "$KODA_DIR/$id.error")
+                    fi
+                    if [ -n "$error_msg" ]; then
+                        printf "%s ${RED}%s (failed: %s)${NC}\n" "$ICON_FAILED" "$label" "$error_msg"
+                    else
+                        printf "%s ${RED}%s (failed)${NC}\n" "$ICON_FAILED" "$label"
+                    fi
                     ;;
             esac
         done
