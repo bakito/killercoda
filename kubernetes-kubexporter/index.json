@@ -1,6 +1,6 @@
 {
   "title": "KubExporter Demo",
-  "description": "Demonstrates the usage of KubExporter",
+  "description": "Demonstrates the usage of KubExporter with OTLP metrics and Grafana dashboard",
   "details": {
     "intro": {
       "text": "intro.md",
@@ -34,6 +34,20 @@
         }
       ]
     }
+  },
+  "environment": {
+    "uilayout": "terminal",
+    "showdashboard": true,
+    "dashboards": [
+      {
+        "name": "Grafana",
+        "port": 30030
+      },
+      {
+        "name": "Prometheus",
+        "port": 30090
+      }
+    ]
   },
   "backend": {
     "imageid": "kubernetes-kubeadm-1node-4GB"
