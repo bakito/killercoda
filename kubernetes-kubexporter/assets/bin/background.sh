@@ -9,7 +9,7 @@ koda_task_init "helm-repos" "Adding Helm repositories"
 koda_task_init "prometheus-install" "Deploying Prometheus"
 koda_task_init "otel-collector-install" "Deploying OTel Collector"
 koda_task_init "grafana-install" "Deploying Grafana"
-koda_task_init "grafana-dashboard" "Installing kubexporter dashboard"
+koda_task_init "grafana-dashboard" "Installing KubExporter dashboard"
 koda_task_init "kubexporter-config" "Creating KubExporter config"
 
 # Execute tasks
