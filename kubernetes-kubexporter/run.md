@@ -36,7 +36,7 @@ kubexporter --config ~/.kubexporter/config.yaml
 
 After running, view the kubexporter metrics in the monitoring dashboards:
 
-- [Grafana Dashboard]({{TRAFFIC_HOST1_30030}}) — visual charts and metrics
+- [Grafana Dashboard]({{TRAFFIC_HOST1_30030}}/d/kubexporter-metrics/kubexporter-metrics) — visual charts and metrics
 - [Prometheus]({{TRAFFIC_HOST1_30090}}) — raw metrics query interface
 
 The Grafana dashboard shows:
