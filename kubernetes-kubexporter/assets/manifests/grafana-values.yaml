@@ -1,0 +1,28 @@
+adminUser: admin
+adminPassword: admin
+
+grafana.ini:
+  auth.anonymous:
+    enabled: true
+    org_role: Admin
+  feature_toggles:
+    enable: kubernetesDashboards dashboardNewLayouts dashboardScene
+
+service:
+  type: NodePort
+  nodePort: 30030
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        access: proxy
+        url: http://prometheus-server.monitoring.svc:80
+        isDefault: true
+        editable: true
+
+sidecar:
+  dashboards:
+    enabled: false
